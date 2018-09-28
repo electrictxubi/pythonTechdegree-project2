@@ -9,7 +9,7 @@ class OneTimePad(Cipher):
 
     def encrypt(self, text, key):
         output = ''
-        for index, char in enumerate(msg):
+        for index, char in enumerate(text):
             char_index = self.alphabet.index(char)
             key_index = self.alphabet_list.index(key[index])
 
@@ -18,20 +18,19 @@ class OneTimePad(Cipher):
 
         return output
 
-    def decrypt(self, text):
-        output = []
-        for i, j in range(0, len(text)):
-            try:
-                text_numb = self.letter_numbers[text[i]];
-                key_numb = self.letter_numbers[self.key[i]];
-                decoded_char = self.numbers_letters[text_numb - key_numb]
-                output.append(decoded_char)
-            except KeyError:
-                output.append(' ')
-        return ''.join(output)
+    def decrypt(self, text, key):
+        output = '';
+        for index, char in enumerate(text):
+            char_index = self.alphabet.index(char)
+            key_index = self.alphabet_list.index(key[index])
+
+            cipher = (char_index - key_index) % 26
+            output += self.alphabet[cipher]
+        return output;
 
 
-jon = OneTimePad("pinga")
-encoded = jon.encrypt("this is cool")
+jon = OneTimePad()
+encoded = jon.encrypt("thisiscool", "absrdfjyyk")
 print(encoded)
-print(jon.decrypt(encoded))
+print(jon.decrypt(encoded, "absrdfjyyk"))
+
