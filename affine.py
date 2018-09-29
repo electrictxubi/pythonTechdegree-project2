@@ -25,7 +25,7 @@ class Affine(Cipher):
         return result
 
     def encrypt(self, text):
-        """this encrpts the plaintext usung the affine cipher"""
+        """this encrpts the plaintext using the affine cipher"""
         output = []
         for letter in text:
             # this try is to account for spaces
@@ -42,7 +42,7 @@ class Affine(Cipher):
         return ''.join(output)
 
     def decrypt(self, text):
-        """this decrypts the encoded messeage using the affine cipher"""
+        """this decrypts the encoded message using the affine cipher"""
         output = []
         for letter in text:
             # this try is to account for spaces
