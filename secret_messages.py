@@ -36,7 +36,7 @@ while True:
         block_answer = input("Do you want to encrypted text in five character blocks?(y/n)")
         if block_answer == 'y':
             # format the text in to the right format but gets rid of spaces to do the padding correctly
-            # the text is re-formated later
+            # the text is re-formatted later
             text = format_text(text).replace(" ", "")
         one_time_answer = input("Are you using a one-time-pad? (y/n)")
         if one_time_answer.lower() == 'y':
@@ -77,11 +77,11 @@ while True:
             # prints ec-text without the block formatting
             print("Your encrypted text is: {}".format(ec_text))
     elif operation.lower() == "decrypt":
-        original_text = input("Please enter text to decrypt: ").replace(" ", "");
+        text = input("Please enter text to decrypt: ").replace(" ", "");
         print("Available ciphers... 'affine' 'atbash' 'caesar' 'keyword' ")
         cipherSelection = input("Please select a cipher: ")
         if cipherSelection.lower() == "affine":
-            co_prime = input("Please pick a co-prime of 26: (i.e. 15, 17, 19...)")
+            co_prime = input("Please pick a co-prime of 26: (i.e. 17, 19, 21...)")
             key = input("Please pick a key of the cipher encryption, a number 1-26: ")
             affine = Affine(int(co_prime), int(key))
             text = affine.decrypt(text)
@@ -102,7 +102,7 @@ while True:
         # one-time-pad done as the last thing, because it was done first in encryption
         if oneTimeAnswer.lower() == 'y':
             print("Please enter a key the same length as the text to be decrypted,")
-            one_key = input("The length of the text is {}:".format(len(original_text)))
+            one_key = input("The length of the text is {}:".format(len(text)))
             one_key_generator = OneTimePad()
             text = one_key_generator.decrypt(text.lower(), one_key)
         print("Your decrypted text is: {}".format(text))
